@@ -20,7 +20,11 @@ mod tests {
     #[test]
     fn regular_structs() {
         
-        let green = ColorRegularStruct { red: 0, green: 255, blue: 0 }; 
+        let green = ColorRegularStruct { 
+            red: 0,
+            green: 255,
+            blue: 0
+        }; 
 
         assert_eq!(green.red, 0);
         assert_eq!(green.green, 255);
