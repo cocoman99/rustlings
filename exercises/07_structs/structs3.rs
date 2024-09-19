@@ -2,6 +2,7 @@
 // defined the `Package` struct, and we want to test some logic attached to it.
 
 #[derive(Debug)]
+
 struct Package {
     sender_country: String,
     recipient_country: String,
@@ -22,16 +23,24 @@ impl Package {
             weight_in_grams,
         }
     }
-
-    // TODO: Add the correct return type to the function signature.
-    fn is_international(&self) {
-        // TODO: Read the tests that use this method to find out when a package
-        // is considered international.
+   
+    fn is_local(&self) -> bool {
+        if self.sender_country == self.recipient_country {
+            return true;
+        }
+        false
     }
 
-    // TODO: Add the correct return type to the function signature.
-    fn get_fees(&self, cents_per_gram: u32) {
-        // TODO: Calculate the package's fees.
+    fn is_international(&self) -> bool {
+        if self.sender_country == self.recipient_country {
+            return false;
+        }
+        true
+    }
+    
+    fn get_fees(&self, cents_per_gram: u32) -> u32 {
+        // Calculate the package's fees.
+        cents_per_gram * self.weight_in_grams
     }
 }
 
@@ -69,7 +78,7 @@ mod tests {
 
         let package = Package::new(sender_country, recipient_country, 1200);
 
-        assert!(!package.is_international());
+        assert!(package.is_local());
     }
 
     #[test]
